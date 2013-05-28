@@ -21,8 +21,9 @@ DHIS2_BASE=/var/lib/dhis2/$DHIS2_USER
 BACKUP=$DHIS2_BASE/backups/snapshot_$(date +%Y%m%d%M%S).sql.bz2
 
 # stop tomcat and take a snapshot backup of the current database before doing anything
-dhis2-shutdown $INSTANCE
-sudo -u postgres pg_dump -T aggregated* -T analytics* -T completeness* -O $INSTANCE | bzip2 > $BACKUP
+dhis2-shutdown $INSTANCE || echo tomcat instance not running;
+
+sudo -u $DHIS2_USER sh -c "pg_dump -T aggregated* -T analytics* -T completeness* -O $INSTANCE | bzip2 > $BACKUP"
 
 # drop and recreate a new blank database
 sudo -u postgres dropdb $DHIS2_DB
@@ -30,6 +31,8 @@ sudo -u postgres createdb -O $DHIS2_USER $DHIS2_DB
 
 # restore the backup into the new database
 cat $2 | sudo -u postgres psql $DHIS2_DB
+# make sure db owner owns everything
+pg_dump -s $DHIS2_DB | grep -i 'owner to' | sed -e "s/OWNER TO .*;/OWNER TO $DHIS2_USER;/i"|psql $DHIS2_DB
 
 # restart tomcat
 dhis2-startup $INSTANCE
