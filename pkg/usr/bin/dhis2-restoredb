@@ -14,14 +14,15 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
+INSTANCE=$1
 DHIS2_USER=$INSTANCE
 DHIS2_DB=$INSTANCE
 DHIS2_BASE=/var/lib/dhis2/$DHIS2_USER
-BACKUP=$DHIS2_BASE/backup/snapshot_$(date +%Y%m%d%M%S).sql.bz2
+BACKUP=$DHIS2_BASE/backups/snapshot_$(date +%Y%m%d%M%S).sql.bz2
 
 # stop tomcat and take a snapshot backup of the current database before doing anything
 dhis2-shutdown $INSTANCE
-sudo -u postgres pg_dump -O $INSTANCE | bzip2 > $BACKUP
+sudo -u postgres pg_dump -T aggregated* -T analytics* -T completeness* -O $INSTANCE | bzip2 > $BACKUP
 
 # drop and recreate a new blank database
 sudo -u postgres dropdb $DHIS2_DB
