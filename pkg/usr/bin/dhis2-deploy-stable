@@ -1,0 +1,25 @@
+#!/bin/sh
+#       ____  __  ______________ 
+#      / __ \/ / / /  _/ ___/__ \
+#     / / / / /_/ // / \__ \__/ /
+#    / /_/ / __  // / ___/ / __/ 
+#   /_____/_/ /_/___//____/____/
+#
+#   DHIS2 instance startup script
+
+set -e
+
+if [ "$#" -ne 1 ]; then
+  echo "usage: dhis2-deploy-stable <instance name>"
+  exit 1
+fi
+
+INSTANCE=$1
+DHIS2STABLE="http://stable.dhis2.org"
+
+dhis2-shutdown $INSTANCE 2>/dev/null || { echo $INSTANCE not running; } 
+# clean out existing webapps
+sudo -u $INSTANCE rm -rf /var/lib/dhis2/$INSTANCE/webapps/* 1>/dev/null 2>&1 || { echo "No $INSTANCE webapps"; exit 1; } 
+# get the latest stable dhis.war
+sudo -u $INSTANCE wget -O /var/lib/dhis2/$INSTANCE/webapps/$INSTANCE.war $DHIS2STABLE
+dhis2-startup $INSTANCE

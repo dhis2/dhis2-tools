@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+                      "http://www.docbook.org/xml/4.5/docbookx.dtd">
+<book>
+  <bookinfo>
+    <title>DHIS2 server tools manual</title>
+    <author>
+      <firstname>Bob</firstname>
+      <surname>Jolliffe</surname>
+    </author>
+  </bookinfo>
+
+  <chapter>
+    <title>Overview</title>
+    <para>Installing and managing DHIS2.</para>
+  </chapter>
+
+  <chapter>
+    <title>DHIS2 tools</title>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-instance-create</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-instance-create</refname>
+        <refpurpose>Creates a new dhis2 instance</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-instance-create</command>
+          <arg choice="opt">
+            <option>OPTIONS</option>
+          </arg>
+          <arg choice="plain">name</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Use this tool to create a new dhis2 instance in a tomcat container.</para>
+      </refsect1>
+      <refsect1>
+        <title>OPTIONS</title>
+        <variablelist>
+          <varlistentry>
+            <term>-p</term>
+            <listitem><para>http port</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>Create it like this</para>
+      </refsect1>
+    </refentry>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-startup</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-startup</refname>
+        <refpurpose>Starts a dhis2 instance</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-startup</command>
+          <arg choice="opt">instance name</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Start a dhis2 instance</para>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>dhis2-startup myInstance</para>
+      </refsect1>
+    </refentry>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-shutdown</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-shutdown</refname>
+        <refpurpose>Stops a dhis2 instance</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-shutdown</command>
+          <arg choice="opt">instance name</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Stop a dhis2 instance</para>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>dhis2-shutdown myInstance</para>
+      </refsect1>
+    </refentry>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-deploy-stable</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-deploy-stable</refname>
+        <refpurpose>Deploys a war file</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-deploy-stable</command>
+          <arg choice="opt">instance name</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Deploys the latest stable dhis2 war file from http://stable.dhis2.org.</para>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>dhis2-deploy-stable myInstance</para>
+      </refsect1>
+    </refentry>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-logview</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-logview</refname>
+        <refpurpose>Shows log file</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-logview</command>
+          <arg choice="opt">instance name</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Use this tool to view log of dhis2 instance using less.</para>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>dhis2-logview myInstance</para>
+      </refsect1>
+    </refentry>
+
+    <!-- ============================================================================== -->
+    <refentry>
+      <refmeta>
+        <refentrytitle>dhis2-create-admin</refentrytitle>
+        <manvolnum>1</manvolnum>
+      </refmeta>
+      <refnamediv>
+        <refname>dhis2-create-admin</refname>
+        <refpurpose>Create a user for administering dhis2 instances</refpurpose>
+      </refnamediv>
+
+      <refsynopsisdiv>
+        <cmdsynopsis>
+          <command>/usr/bin/dhis2-create-admin</command>
+          <arg choice="opt">username</arg>
+        </cmdsynopsis>
+      </refsynopsisdiv>
+
+      <refsect1>
+        <title>Description</title>
+        <para>Creates a new dhis2 admin user. If the specified user does not exist, she will be
+          created on the system. Otherwise an existing user is modified. The dhis2 admin user will
+          have postgres superuser privileges and wil be a member of the dhis2admin group. </para>
+      </refsect1>
+      <refsect1>
+        <title>Examples</title>
+        <para>Create it like this</para>
+      </refsect1>
+    </refentry>
+  </chapter>
+</book>

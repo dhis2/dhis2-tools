@@ -1,0 +1,34 @@
+#!/bin/bash
+#       ____  __  ______________ 
+#      / __ \/ / / /  _/ ___/__ \
+#     / / / / /_/ // / \__ \__/ /
+#    / /_/ / __  // / ___/ / __/ 
+#   /_____/_/ /_/___//____/____/
+#
+#   Script to restore a database dump
+
+set -e
+
+if [ "$#" -ne 2 ]; then
+  echo "usage: dhis2-restoredb <instance name> <dbdump>"
+  exit 1
+fi
+
+DHIS2_USER=$INSTANCE
+DHIS2_DB=$INSTANCE
+DHIS2_BASE=/var/lib/dhis2/$DHIS2_USER
+BACKUP=$DHIS2_BASE/backup/snapshot_$(date +%Y%m%d%M%S).sql.bz2
+
+# stop tomcat and take a snapshot backup of the current database before doing anything
+dhis2-shutdown $INSTANCE
+sudo -u postgres pg_dump -O $INSTANCE | bzip2 > $BACKUP
+
+# drop and recreate a new blank database
+sudo -u postgres dropdb $DHIS2_DB
+sudo -u postgres createdb -O $DHIS2_USER $DHIS2_DB
+
+# restore the backup into the new database
+cat $2 | sudo -u postgres psql $DHIS2_DB
+
+# restart tomcat
+dhis2-startup $INSTANCE

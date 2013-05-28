@@ -1,0 +1,14 @@
+Package: dhis2-tools
+Source: dhis2-tools
+Version: 1.0
+Architecture: all
+Maintainer: DHIS2 developers <dhis2-devs@lists.launchpad.net>
+Installed-Size: 236
+Depends: openjdk-7-jdk,tomcat7-common (>= 7.0.26-1ubuntu1.1),netcat,nginx,ttf-liberation,libtcnative-1,makepasswd,postgresql-9.2
+Section: java
+Priority: optional
+Homepage: http://launchpad.net/dhis2
+Description: Tools for managing dhis2 on ubuntu
+ This package contains a set of tools to assist with
+ the installation and maintenance of the dhis2 (http://dhis2.org)
+ software on ubuntu server.
