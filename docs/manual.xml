@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-                      "http://www.docbook.org/xml/4.5/docbookx.dtd">
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd">
 <book>
   <bookinfo>
     <title>DHIS2 server tools manual</title>
     <author>
-      <firstname>Bob</firstname>
-      <surname>Jolliffe</surname>
+      <firstname>DHIS2 developer team</firstname>
     </author>
   </bookinfo>
 
   <chapter>
     <title>Overview</title>
-    <para>Installing and managing DHIS2.</para>
+    <para>The dhis2-tools package is a collection of tools and utilities for installing and managing
+      DHIS2 applications on an ubuntu server.  The tools provide the ability to go from a "blank"
+      server with only ssh running, to a fully functioning dhis2 installation in a matter of
+      minutes.  Used together they can also be combined into automated scripts to facilitate rapid
+      reconstruction of a given configuration.</para>
   </chapter>
 
   <chapter>
@@ -41,7 +43,29 @@
 
       <refsect1>
         <title>Description</title>
-        <para>Use this tool to create a new dhis2 instance in a tomcat container.</para>
+        <para>Use this tool to create a new dhis2 instance in a tomcat container. The name that is
+          specified will be used to create a new user and a new database with the name of that user.
+          The user will be assigned to the <emphasis role="bold">dhis2</emphasis> group. The user
+          will have a home directory created in /var/lib/dhis2/&lt;username>. This directory acts as
+          both the <emphasis role="bold">DHIS2_HOME</emphasis> directory and also the <emphasis
+            role="bold">CATALINA_BASE</emphasis> directory for the tomcat servlet container.</para>
+        <para>By default the instance is allocated 2G of heap space RAM.  This can be adjusted by
+          editing the parameters in <emphasis role="bold">/var/lib/dhis2/&lt;name>/bin/setenv.sh</emphasis>.</para>
+        <para>The servlet container is configured to run with an http connector pool of a maximum of
+          100 threads.  This parameter can be adjusted by editing <emphasis role="bold">/var/lib/dhis2/&lt;name>/conf/server.conf</emphasis>.</para>
+        <para>The servlet container configuration has been specially tweaked for running DHIS2.  For
+          example tomcat filters are used to ensure that all static content from the web application
+          are cacheable by web proxy servers such as nginx or apache.  The lib directory of the
+          webapp has been explicitly placed in the application classpath so that additional jars
+          such as java compiled apache camel routes can be made available to the DHIS2
+          application.</para>
+        <para>Note that a dhis2 war file is not deployed by default.  See the manual page for
+            <emphasis role="bold">dhis2-deploy-war</emphasis> for instructions to deploy a dhis2 war
+          file over the internet from the latest stable global build, latest trunk build or from a
+          user specified war file on the filesystem. </para>
+        <para>You need to be a member of the <emphasis role="bold">dhis2-admin</emphasis> group to
+          use these and other tools for managing the instance.  See the manual page for <emphasis
+            role="bold">dhis2-create-admin</emphasis>.</para>
       </refsect1>
       <refsect1>
         <title>OPTIONS</title>
@@ -54,7 +78,13 @@
       </refsect1>
       <refsect1>
         <title>Examples</title>
-        <para>Create it like this</para>
+        <para><command>dhis2-instance-create -p 8080 hmis</command></para>
+        <para>Creates a new instance called hmis listening on http port 8080.</para>
+      </refsect1>
+      <refsect1>
+        <title>See also</title>
+        <para>dhis2-create-admin (1), dhis2-deploy-war (1), dhis2-startup (1), dhis2-shutdown (1),
+          dhis2-deploy-war (1) and dhis2-log (1).</para>
       </refsect1>
     </refentry>
 
@@ -117,28 +147,52 @@
     <!-- ============================================================================== -->
     <refentry>
       <refmeta>
-        <refentrytitle>dhis2-deploy-stable</refentrytitle>
+        <refentrytitle>dhis2-deploy-war</refentrytitle>
         <manvolnum>1</manvolnum>
       </refmeta>
       <refnamediv>
-        <refname>dhis2-deploy-stable</refname>
+        <refname>dhis2-deploy-war</refname>
         <refpurpose>Deploys a war file</refpurpose>
       </refnamediv>
 
       <refsynopsisdiv>
         <cmdsynopsis>
           <command>/usr/bin/dhis2-deploy-stable</command>
-          <arg choice="opt">instance name</arg>
+          <arg choice="opt">
+            <option>OPTIONS</option>
+          </arg>
+          <arg choice="plain">instance name</arg>
         </cmdsynopsis>
       </refsynopsisdiv>
-
+      
+      <refsect1>
+        <title>OPTIONS</title>
+        <variablelist>
+          <varlistentry>
+            <term>-t</term>
+            <listitem><para>Deploy war from latest trunk build.  NOT RECOMMENDED for production systems</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>-l</term>
+            <listitem><para>Deploy war located at a custom url</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>-f</term>
+            <listitem><para>Deploy war from a file on the filesystem</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </refsect1>
+      
       <refsect1>
         <title>Description</title>
-        <para>Deploys the latest stable dhis2 war file from http://stable.dhis2.org.</para>
+        <para>Deploys a dhis2 war file to the instance.  The default behaviour when no options are given is to download and deploy the latest stable release from http://stable.dhis2.org.</para>
       </refsect1>
       <refsect1>
         <title>Examples</title>
-        <para>dhis2-deploy-stable myInstance</para>
+        <para><command>dhis2-deploy-war myInstance</command> deploys the latest stable release from dhis2.org into myInstance.</para>
+        <para><command>dhis2-deploy-war -f wars/dhis.war myInstance</command> deploys the war file at wars/dhis.war into myInstance.</para>
+        <para><command>dhis2-deploy-war -t myInstance</command>  deploys the latest trunk build from the dhis2 team integration server into myInstance.  Don't use this in production.</para>
+        <para><command>dhis2-deploy-war -l http://mywars.org/dhis.war myInstance</command> deploys the war file from a user provided url into myInstance.</para>
       </refsect1>
     </refentry>
 

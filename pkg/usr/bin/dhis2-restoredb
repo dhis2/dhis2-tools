@@ -45,4 +45,4 @@ esac
 pg_dump -s $DHIS2_DB | grep -i 'owner to' | sed -e "s/OWNER TO .*;/OWNER TO $DHIS2_USER;/i"|psql $DHIS2_DB
 
 # restart tomcat
-dhis2-startup $INSTANCE
+# dhis2-startup $INSTANCE
