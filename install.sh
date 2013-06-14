@@ -1,9 +1,12 @@
 #!/bin/sh
 # set -e
 
-# need to use a ppa for postgres 9.2 and nginx
+# new way to install postgres 9.2 (https://wiki.postgresql.org/wiki/Apt)
+echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" >/etc/apt/sources.list.d/pgdg.list
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+
+# need to use a ppa for nginx
 sudo apt-get -y install python-software-properties -y
-sudo add-apt-repository ppa:pitti/postgresql -y 
 sudo add-apt-repository ppa:nginx/stable -y 
 sudo apt-get -y update
 

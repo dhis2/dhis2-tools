@@ -161,7 +161,7 @@ EOT
 # setup user crontab
 
 sudo -u $TARGET sh -c "crontab -u $TARGET -" << EOT
-@reboot /usr/bin/dhis2-startup $TARGET
+@reboot CATALINA_BASE=/var/lib/dhis2/$TARGET /usr/bin/dhis2-startup $TARGET
 20 19 * * * /usr/bin/dhis2_backup $TARGET
 21 00 * * * /usr/sbin/logrotate -s $DHIS2HOME/logrotate.status $DHIS2HOME/logrotate.conf
 EOT

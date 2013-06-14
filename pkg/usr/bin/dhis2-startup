@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #       ____  __  ______________ 
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
@@ -13,6 +13,13 @@ if [ "$#" -ne 1 ]; then
 fi
 
 INSTANCE=$1
+CATALINA_BASE=/var/lib/dhis2/$INSTANCE
 
-sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
+if [ "$USER" == "$INSTANCE" ]
+  then
+    /usr/share/tomcat7/bin/startup.sh
+  else
+    sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
+fi
+
 echo "DHIS2 instance starting for $INSTANCE"
