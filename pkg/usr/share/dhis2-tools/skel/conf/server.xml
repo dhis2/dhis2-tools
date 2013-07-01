@@ -12,7 +12,7 @@
     <Executor name="tomcatThreadPool" namePrefix="tomcat-http-" 
            maxThreads="100" minSpareThreads="10" /> 
                     
-    <Connector port="HTTPPORT" protocol="HTTP/1.1" 
+    <Connector port="HTTPPORT" address="127.0.0.1" protocol="HTTP/1.1" 
            executor="tomcatThreadPool" connectionTimeout="20000" />
  
     <Engine name="Catalina" defaultHost="localhost">
