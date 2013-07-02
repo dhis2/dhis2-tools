@@ -162,6 +162,6 @@ EOT
 
 sudo -u $TARGET sh -c "crontab -u $TARGET -" << EOT
 @reboot CATALINA_BASE=/var/lib/dhis2/$TARGET /usr/bin/dhis2-startup $TARGET
-20 19 * * * /usr/bin/dhis2_backup $TARGET
+20 19 * * * /usr/bin/dhis2-backup $TARGET
 21 00 * * * /usr/sbin/logrotate -s $DHIS2HOME/logrotate.status $DHIS2HOME/logrotate.conf
 EOT
