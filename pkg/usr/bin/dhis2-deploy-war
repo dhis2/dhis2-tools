@@ -51,6 +51,9 @@ test -f $TEMPWAR || wget -O $TEMPWAR $SOURCE
 unzip -tq $TEMPWAR || { echo "Corrupt war file: $TEMPWAR"; exit 1; }
 
 dhis2-shutdown $INSTANCE 2>/dev/null || { echo $INSTANCE not running; } 
+# give it a chance to shutdown
+sleep 3
+
 # clean out existing webapp
 sudo -u $INSTANCE rm -rf /var/lib/dhis2/$INSTANCE/webapps/$INSTANCE 1>/dev/null 2>&1 || { echo "No $INSTANCE webapps"; exit 1; } 
 sudo -u $INSTANCE cp $TEMPWAR $TARGET
