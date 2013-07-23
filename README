@@ -9,6 +9,5 @@ DHIS2 tools readme.
 To build the debian package from source (on a linux computer), run the following commands in the dhis2-tools-deb folder:
 
 >$ make
->$ make install
 
 This will assemble the source files into a dhis2-tools_x.xubuntu1_all.deb package.
