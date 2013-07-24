@@ -9,9 +9,9 @@
 #########################################################
 
 BACKUP_DIR=~/backups/
-# REMOTE="ghbackup@178.79.143.102:./dhis"
-USER=$USER
-DBNAME=$USER
+# REMOTE="xxxx@xxxxxx:./dhis"
+USER=$LOGNAME
+DBNAME=$LOGNAME
 # Keep Sunday's backup
 DAY_OF_WEEK_TO_KEEP=7
 WEEKS_TO_KEEP=6
