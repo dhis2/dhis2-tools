@@ -10,4 +10,4 @@ To build the debian package from source (on a linux computer), run the following
 
 >$ make
 
-This will assemble the source files into a dhis2-tools_x.xubuntu1_all.deb package.
+This will assemble the source files into a dhis2-tools_x.xubuntu1_all.deb package. docbook2x and lintian packages are required.
