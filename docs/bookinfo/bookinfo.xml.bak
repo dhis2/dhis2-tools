@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bookinfo>
+    <releaseinfo><?eval ${project.version}?></releaseinfo>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="keywordset.xml" encoding="UTF-8"/>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="copyright.xml" encoding="UTF-8"/>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="authorgroup.xml" encoding="UTF-8"/>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="legalnotice.xml" encoding="UTF-8"/>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../../../build.properties" encoding="UTF-8"/>
+</bookinfo>
+
+
+
