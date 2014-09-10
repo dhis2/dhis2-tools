@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd">
-<book>
-  <bookinfo>
-    <title>DHIS2 server tools manual</title>
-    <author>
-      <firstname>DHIS2 developer team</firstname>
-    </author>
-  </bookinfo>
-
-  <chapter>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.docbook.org/xml/4.4/docbookx.dtd">
+<chapter id="dhis2tools_guide_chapter">
+  <title>DHIS2 Tools Guide</title>
+<section>
     <title>Overview</title>
     <para>The dhis2-tools package is a collection of tools and utilities for installing and managing
       DHIS2 applications on an ubuntu server.  The tools provide the ability to go from a "blank"
       server with only ssh running, to a fully functioning dhis2 installation in a matter of
       minutes.  Used together they can also be combined into automated scripts to facilitate rapid
       reconstruction of a given configuration.</para>
-  </chapter>
+  </section>
   
-  <chapter>
+<section>
     <title>DHIS2 tools</title>
 
     <!-- ============================================================================== -->
@@ -253,5 +247,6 @@
         <para>Create it like this</para>
       </refsect1>
     </refentry>
-  </chapter>
-</book>
+  </section>
+
+</chapter>
