@@ -14,6 +14,8 @@ fi
 
 INSTANCE=$1
 CATALINA_BASE=/var/lib/dhis2/$INSTANCE
+# required for cron - USER env variable is not defined
+USER=$LOGNAME
 
 if [ "$USER" == "$INSTANCE" ]
   then

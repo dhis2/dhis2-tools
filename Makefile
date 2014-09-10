@@ -1,4 +1,4 @@
-TARGET=dhis2-tools_1.0-0ubuntu1_all.deb
+TARGET=dhis2-tools_1.1-0ubuntu1_all.deb
 
 all: deb test
 

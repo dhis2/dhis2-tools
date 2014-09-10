@@ -1,10 +1,10 @@
 Package: dhis2-tools
 Source: dhis2-tools
-Version: 1.0
+Version: 1.1
 Architecture: all
 Maintainer: DHIS2 developers <dhis2-devs@lists.launchpad.net>
 Installed-Size: 236
-Depends: postgresql-client-9.2, openjdk-7-jdk,tomcat7-common (>= 7.0.26-1ubuntu1.1),netcat,ttf-liberation,libtcnative-1,makepasswd,unzip
+Depends: postgresql-client, openjdk-7-jdk,tomcat7-common (>= 7.0.26-1ubuntu1.1),netcat,libtcnative-1,makepasswd,unzip
 Section: java
 Priority: optional
 Homepage: http://launchpad.net/dhis2
