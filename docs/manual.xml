@@ -52,7 +52,7 @@
       The figure below shows the main components involved in a DHIS2 system.
       <figure>
         <title>Single machine all-in-one installation</title>
-        <graphic fileref="architecture.png" align="center" width="80%" format="PNG"/>
+        <graphic fileref="architecture.svg" align="center" width="80%" format="SVG"/>
       </figure>
       The dhis2-tools are primarily concerned with the creation and managing of the tomcat instances
       which deliver the web application. As you can see in the diagram there may be one or more of these.
