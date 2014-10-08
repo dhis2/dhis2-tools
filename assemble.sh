@@ -1,6 +1,13 @@
 #!/bin/bash
 
-# first fixing up the horrible mess bazzar makes of file permissions
+# create necessary empty directories (which git clobbers)
+mkdir -p ./pkg/usr/share/man1
+
+for subd in backups lib  logs  temp  webapps; do
+    mkdir -p ./pkg/usr/share/dhis2-tools/skel/$subd
+done
+
+# fixing up the horrible mess bazzar makes of file permissions
 find ./pkg -type d -exec chmod 0755 {} \;
 find ./pkg -type f -exec chmod 0644 {} \;
 

@@ -94,7 +94,8 @@
     <para> 
       Once your base system is properly installed and secured you can proceed to install the
       dhis2-tools package from the apt repository at http://apt.dhis2.org. The easiest way to do so is to 
-      run the install.sh script available at ...
+      run the install.sh script available (with the source code of the package) at
+      https://github.com/dhis2/dhis2tools.
     </para>
     <para>
       The simplified set of steps to get a dhis2 instance up and running from here are:

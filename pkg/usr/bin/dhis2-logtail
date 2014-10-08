@@ -8,10 +8,10 @@
 #   DHIS2 instance log viewer
 
 if [ "$#" -ne 1 ]; then
-  echo "usage: dhis2-logview <instance name>"
+  echo "usage: dhis2-logtail <instance name>"
   exit 1
 fi
 
 INSTANCE=$1
 
-sudo -u $INSTANCE less /var/lib/dhis2/$INSTANCE/logs/catalina.out
+sudo -u $INSTANCE tail -f /var/lib/dhis2/$INSTANCE/logs/catalina.out
