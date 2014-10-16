@@ -59,7 +59,7 @@
         # some CA's might also provide you with a CA cert to install
 	# SSLCACertificateFile /etc/ssl/certs/EV_CA_Bundle.pem
 	
-	SSLProtocol all
+	SSLProtocol all -SSLv2 -SSLv3
 	SSLCipherSuite HIGH:MEDIUM
 
 	<FilesMatch "\.(cgi|shtml|phtml|php)$">
