@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # create necessary empty directories (which git clobbers)
-mkdir -p ./pkg/usr/share/man1
+mkdir -p ./pkg/usr/share/man
+mkdir -p ./pkg/usr/share/man/man1
+	
+# Make manpages and copy into package
+cd docs; make; cd ..
 
 for subd in backups lib  logs  temp  webapps; do
     mkdir -p ./pkg/usr/share/dhis2-tools/skel/$subd
