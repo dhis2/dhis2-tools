@@ -16,4 +16,4 @@ INSTANCE=$1
 PID_FILE=/var/lib/dhis2/$INSTANCE/tomcat.pid
 PID=$(cat /var/lib/dhis2/$INSTANCE/tomcat.pid)
 echo "Shutting down dhis2 instance"
-sudo -u $INSTANCE kill $PID || sudo -u $INSTANCE rm $PID_FILE 
+sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE 
