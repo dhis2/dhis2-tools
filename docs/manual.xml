@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd">
-  <chapter>
+<chapter version="5.0"
+  xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+  xml:id="index" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xl="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns2="http://www.w3.org/1998/Math/MathML"
+  xmlns:ns="http://docbook.org/ns/docbook"
+  xmlns:date="http://exslt.org/dates-and-times">
+    
   <title>DHIS2 Tools Guide</title>
+  
+  <info>
+    <author>
+      <personname>DHIS2 team</personname>
+      <contrib />
+    </author>
+    <productname>dhis2-tools</productname>
+  </info>
+  
   <section>
     <title>Overview</title>
     <para>The dhis2-tools package is a collection of tools and utilities for installing and managing
@@ -52,7 +72,11 @@
       The figure below shows the main components involved in a DHIS2 system.
       <figure>
         <title>Single machine all-in-one installation</title>
-        <graphic fileref="architecture.svg" align="center" width="80%" format="SVG"/>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="architecture.svg" align="center" width="80%" format="SVG"/>
+          </imageobject>
+        </mediaobject>
       </figure>
       The dhis2-tools are primarily concerned with the creation and managing of the tomcat instances
       which deliver the web application. As you can see in the diagram there may be one or more of these.
@@ -145,7 +169,8 @@
 
     <!-- ============================================================================== -->
     <refentry>
-      <refmeta>
+      
+        <refmeta>
         <refentrytitle>dhis2-instance-create</refentrytitle>
         <manvolnum>1</manvolnum>
       </refmeta>
@@ -163,7 +188,7 @@
           <arg choice="plain">name</arg>
         </cmdsynopsis>
       </refsynopsisdiv>
-
+        
       <refsect1>
         <title>Description</title>
         <para>Use this tool to create a new dhis2 instance in a tomcat container. The name that is
@@ -560,4 +585,5 @@
       </table>
     </para>
   </section>
+    
 </chapter>

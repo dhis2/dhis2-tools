@@ -1,9 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd"
-        [
-                <!ENTITY title 'DHIS2 Tools Guide'>
-         ]>
-<book>
+<book version="5.0"
+        xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+        xml:id="index" xmlns="http://docbook.org/ns/docbook"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:xl="http://www.w3.org/1999/xlink"
+        xmlns:xi="http://www.w3.org/2001/XInclude"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:ns2="http://www.w3.org/1998/Math/MathML"
+        xmlns:ns="http://docbook.org/ns/docbook"
+        xmlns:date="http://exslt.org/dates-and-times">
+        
     <title>&title;</title>
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="resources/bookinfo/bookinfo.xml" encoding="UTF-8"/>
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="manual.xml" encoding="UTF-8" />
