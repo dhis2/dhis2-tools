@@ -1,0 +1,20 @@
+ dpkg-buildpackage -rfakeroot -D -us -uc -i
+dpkg-buildpackage: source package dhis2-tools
+dpkg-buildpackage: source version 1.3
+dpkg-buildpackage: source distribution UNRELEASED
+dpkg-buildpackage: source changed by Simon Jespersen <simjes91@me.com>
+ dpkg-source -i --before-build dhis2-tools-1.3
+dpkg-buildpackage: host architecture amd64
+ fakeroot debian/rules clean
+dh clean 
+   dh_testdir
+   dh_auto_clean
+   dh_clean
+ dpkg-source -i -b dhis2-tools-1.3
+dpkg-source: warning: version does not contain a revision
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building dhis2-tools using existing ./dhis2-tools_1.3.orig.tar.gz
+dpkg-source: error: cannot represent change to dhis2-tools-1.3.tar.gz: binary file contents changed
+dpkg-source: error: add dhis2-tools-1.3.tar.gz in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: unrepresentable changes to source
+dpkg-buildpackage: error: dpkg-source -i -b dhis2-tools-1.3 gave error exit status 2
