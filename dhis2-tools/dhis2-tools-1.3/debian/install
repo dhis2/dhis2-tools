@@ -1,0 +1,2 @@
+/etc/sudoers.d/dhis2 /etc/sudoers.d/
+/usr/bin/* /usr/bin/
