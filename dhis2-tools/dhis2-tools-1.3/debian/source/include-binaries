@@ -1,0 +1,17 @@
+docs/architecture.png
+docs/dhis2-clone.1.gz
+docs/dhis2-create-admin.1.gz
+docs/dhis2-deploy-war.1.gz
+docs/dhis2-instance-create.1.gz
+docs/dhis2-logtail.1.gz
+docs/dhis2-logview.1.gz
+docs/dhis2-shutdown.1.gz
+docs/dhis2-startup.1.gz
+usr/share/man/man1/dhis2-clone.1.gz
+usr/share/man/man1/dhis2-create-admin.1.gz
+usr/share/man/man1/dhis2-deploy-war.1.gz
+usr/share/man/man1/dhis2-instance-create.1.gz
+usr/share/man/man1/dhis2-logtail.1.gz
+usr/share/man/man1/dhis2-logview.1.gz
+usr/share/man/man1/dhis2-shutdown.1.gz
+usr/share/man/man1/dhis2-startup.1.gz
