@@ -1,2 +1,0 @@
-install:
-	cd docs; make;	

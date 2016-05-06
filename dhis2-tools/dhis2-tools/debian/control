@@ -3,7 +3,7 @@ Section: java
 Priority: optional
 Maintainer: DHIS2 developers <dhis2-devs@lists.launchpad.net>
 Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://launchpad.net/dhis2
 
 Package: dhis2-tools
