@@ -1,6 +1,6 @@
 deb:
 	cd docs; make;
-	cd dhis2-tools-1.3; debuild -b;
+	cd dhis2-tools; debuild -b;
 
 clean:
 	rm -f dhis2-tools_1.2-*
