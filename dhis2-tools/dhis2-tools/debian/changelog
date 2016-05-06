@@ -1,3 +1,9 @@
+dhis2-tools (1.2-1ubuntu2) trusty; urgency=low
+
+  * Man pages for dhis2-nginx, -restoredb, -backup and -integrity
+
+ -- Simon Jespersen <simjes91@me.com>  Fri, 06 May 2016 14:43:17 +0200
+
 dhis2-tools (1.2-1ubuntu1) trusty; urgency=low
 
   * Rebuilt from github code. Ready for PPA upload.

@@ -15,3 +15,7 @@ usr/share/man/man1/dhis2-logtail.1.gz
 usr/share/man/man1/dhis2-logview.1.gz
 usr/share/man/man1/dhis2-shutdown.1.gz
 usr/share/man/man1/dhis2-startup.1.gz
+usr/share/man/man1/dhis2-backup.1.gz
+usr/share/man/man1/dhis2-integrity.1.gz
+usr/share/man/man1/dhis2-nginx.1.gz
+usr/share/man/man1/dhis2-restoredb.1.gz
