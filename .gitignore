@@ -2,3 +2,4 @@
 *.build
 *.changes
 *.debian.tar.gz
+*.1.gz
