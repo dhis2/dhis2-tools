@@ -1,3 +1,9 @@
+dhis2-tools (1.2-1ubuntu3) xenial; urgency=low
+
+  * Tested with Ubuntu 16.04
+
+ -- Simon Jespersen <simjes91@me.com>  Sat, 21 May 2016 13:51:33 +0200
+
 dhis2-tools (1.2-1ubuntu2) trusty; urgency=low
 
   * Man pages for dhis2-nginx, -restoredb, -backup and -integrity
