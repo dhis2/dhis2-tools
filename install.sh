@@ -24,6 +24,16 @@ fi
 
 # Only tested on LTS Ubuntu versions
 case $RELEASE in
+  12.04)
+    echo "installing on 12.04"
+    echo "setup repositories for postgresql and nginx";
+    # new way to install postgres 9.2 (https://wiki.postgresql.org/wiki/Apt)
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" >/etc/apt/sources.list.d/pgdg.list
+    wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+    # need to use a ppa for nginx
+    apt-get -y install python-software-properties -y
+    add-apt-repository ppa:nginx/stable -y;; 
+
   14.04)
     echo "installing on 14.04";;
 
