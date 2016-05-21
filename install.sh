@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   DHIS2 installation helper script
@@ -12,7 +12,7 @@ set -e
 # Make sure we are on a supported distribution
 DISTRO=$(lsb_release -si)
 RELEASE=$(lsb_release -sr)
- 
+
 echo "Attempting installion of dhis2-tools on $DISTRO linux version $RELEASE"
 # No CentOS version yet :-(
 if [ $DISTRO != 'Ubuntu' ]
@@ -24,7 +24,6 @@ fi
 
 # Only tested on LTS Ubuntu versions
 case $RELEASE in
-
   12.04)
     echo "installing on 12.04"
     echo "setup repositories for postgresql and nginx";
@@ -38,23 +37,32 @@ case $RELEASE in
   14.04)
     echo "installing on 14.04";;
 
+  16.04)
+    echo "installing on 16.04";;
+
   *)
-    echo "Only Ubuntu LTS releases (12.04 and 14.04) are supported";
+    echo "The PPA only contains packages for Ubuntu LTS 14.04 and 16.04";
+    echo "You can build for other versions if you want, the source code is located at https://github.com/dhis2/dhis2-tools";
     echo "Exiting ...";
     exit 1;;
 esac
 
-# add dhis2 apt repository to sources
-echo 'deb http://apt.dhis2.org/amd64 /' > /etc/apt/sources.list.d/dhis2.list 
-wget -O - http://apt.dhis2.org/keyFile |apt-key add -
 
-apt-get update -y
+#add PPA
+add-apt-repository -y ppa:simjes91/dhis2-tools
+add-apt-repository -y ppa:webupd8team/java
+apt-get -y update
 
-# install the dhis2-tools deb
-apt-get install dhis2-tools 
+#accept oracle license
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+#install java8 and dhis2-tools
+apt-get -y install oracle-java8-installer
+apt-get -y install dhis2-tools
+
 
 # Uncomment below to install postgres and nginx servers on this machine
-# apt-get -y install nginx postgresql 
+# apt-get -y install nginx postgresql
 echo "The dhis2-tools are now installed. You may also want to"
 echo "install nginx and postgresql servers on this machine. You"
 echo "can do so by running:"

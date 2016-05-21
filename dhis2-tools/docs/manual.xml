@@ -11,9 +11,9 @@
   xmlns:ns2="http://www.w3.org/1998/Math/MathML"
   xmlns:ns="http://docbook.org/ns/docbook"
   xmlns:date="http://exslt.org/dates-and-times">
-    
+
   <title>DHIS2 Tools Guide</title>
-  
+
   <info>
     <author>
       <personname>DHIS2 team</personname>
@@ -21,7 +21,7 @@
     </author>
     <productname>dhis2-tools</productname>
   </info>
-  
+
   <section>
     <title>Overview</title>
     <para>The dhis2-tools package is a collection of tools and utilities for installing and managing
@@ -33,7 +33,7 @@
       differs in some respects from the installation guidelines in the dhis2 user manual in that it describes
       the implementation of a specific approach rather than the more general tutorial nature of the
       user manual. It is recommended that implementers do also study the material in the user manual as it provides additional
-      information, eg. how to tune the postgresql server.  The rationale of the tools described in 
+      information, eg. how to tune the postgresql server.  The rationale of the tools described in
       this manual includes:
     <orderedlist>
       <listitem>
@@ -58,14 +58,14 @@
             could be at least semi automated;</para></listitem>
         <listitem><para>nginx configuration is assisted by means of providing a sample configuration file.
         This configuration could be made more dynamic;</para></listitem>
-        <listitem><para>the format of what is currently packaged is an Ubuntu linux deb package. There is 
+        <listitem><para>the format of what is currently packaged is an Ubuntu linux deb package. There is
           also considerable interest in the Redhat/CentOS flavour of linux for running dhis2.  It should be
-          possible to offer a yum format package to facilitate use on these systems. 
+          possible to offer a yum format package to facilitate use on these systems.
         </para></listitem>
       </orderedlist>
     </para>
   </section>
-   
+
    <section>
      <title>Architecture</title>
     <para>
@@ -86,12 +86,12 @@
       Some customisation is required to separate them.
     </para>
     <para>
-      When an instance is created with the dhis2-create-instance command, a new user is created with the name 
+      When an instance is created with the dhis2-create-instance command, a new user is created with the name
       of the instance (lets say its called hmis). The home directory of that user is located at /var/lib/dhis2/hmis.
       A database role is created also called hmis together with a database with the name of hmis.  The DHIS2_HOME
       environment variable for the instance is set to the same home directory of the user.
     </para>
-    <para>The essential components of a standalone tomcat instance are also created within the same directory 
+    <para>The essential components of a standalone tomcat instance are also created within the same directory
       (modelled after the ubuntu tomcat7-user package).  The web.xml file of that tomcat instance has been customized
       to allow an upstream web proxy server (such as nginx) to cache the static content of the dhis2 application.
     </para>
@@ -115,9 +115,9 @@
       security of the system at this point by improving the security of your ssh service and installing a host based
       firewall like ufw.  This process is described eleswhere(?).
     </para>
-    <para> 
+    <para>
       Once your base system is properly installed and secured you can proceed to install the
-      dhis2-tools package from the apt repository at http://apt.dhis2.org. The easiest way to do so is to 
+      dhis2-tools package from the apt repository at http://apt.dhis2.org. The easiest way to do so is to
       run the install.sh script available (with the source code of the package) at
       https://github.com/dhis2/dhis2tools.
     </para>
@@ -140,9 +140,9 @@
           <para>setup a basic nginx template with:</para>
           <para>dhis2-nginx</para>
           <para>
-            Note that nginx configuration is not done automatically.  Though running the command dhis2-nginx will 
+            Note that nginx configuration is not done automatically.  Though running the command dhis2-nginx will
             create a simple site configuration file under /etc/nginx/sites-enabled/dhis2.  You may need to edit this file
-            to ensure that instance names and port numbers are correct.            
+            to ensure that instance names and port numbers are correct.
           </para>
         </listitem>
         <listitem>
@@ -154,7 +154,7 @@
     <para>
       A full description of these commands and others used for managing your instance is included in the
       command reference section below.
-    </para>    
+    </para>
   </section>
 
   <section>
@@ -169,7 +169,7 @@
 
     <!-- ============================================================================== -->
     <refentry>
-      
+
         <refmeta>
         <refentrytitle>dhis2-instance-create</refentrytitle>
         <manvolnum>1</manvolnum>
@@ -188,7 +188,7 @@
           <arg choice="plain">name</arg>
         </cmdsynopsis>
       </refsynopsisdiv>
-        
+
       <refsect1>
         <title>Description</title>
         <para>Use this tool to create a new dhis2 instance in a tomcat container. The name that is
@@ -514,7 +514,144 @@
       </refsect1>
     </refentry>
   </section>
-  
+
+  <!-- ============================================================================== -->
+  <refentry>
+
+      <refmeta>
+      <refentrytitle>dhis2-nginx</refentrytitle>
+      <manvolnum>1</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>dhis2-nginx</refname>
+      <refpurpose>Configure nginx with a specified or sample file</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <cmdsynopsis>
+        <command>/usr/bin/dhis2-nginx</command>
+        <arg choice="opt">
+          <option>FILENAME</option>
+        </arg>
+      </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Use this tool to configure nginx. If no file is specified, a sample file will be used.</para>
+      <para>The sample file is located at <emphasis role="bold">/usr/share/dhis2-tools/samples/nginx/</emphasis></para>
+    </refsect1>
+    <refsect1>
+      <title>Examples</title>
+      <para><command>dhis2-nginx</command></para>
+      <para>Configures nginx to use the sample configuration.</para>
+    </refsect1>
+  </refentry>
+
+  <!-- ============================================================================== -->
+
+  <refentry>
+
+      <refmeta>
+      <refentrytitle>dhis2-integrity</refentrytitle>
+      <manvolnum>1</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>dhis2-integrity</refname>
+      <refpurpose>Check database integrity of a DHIS2 instance</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <cmdsynopsis>
+        <command>/usr/bin/dhis2-integrity</command>
+        <arg choice="req">
+          <option>instance name</option>
+        </arg>
+      </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Use this tool to check the integrity of a dhis2 database. The tool runs multiple sql queries to the specified database.</para>
+    </refsect1>
+    <refsect1>
+      <title>Examples</title>
+      <para><command>dhis2-integrity dhis</command></para>
+      <para>Runs various integrity tests on the database named dhis</para>
+    </refsect1>
+  </refentry>
+
+  <!-- ============================================================================== -->
+
+  <refentry>
+
+      <refmeta>
+      <refentrytitle>dhis2-restoredb</refentrytitle>
+      <manvolnum>1</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>dhis2-restoredb</refname>
+      <refpurpose>Restore a database dump to a dhis2 instance.</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <cmdsynopsis>
+        <command>/usr/bin/dhis2-restoredb</command>
+        <arg choice="req">
+          <option>instance name</option>
+        </arg>
+        <arg choice="req">
+          <option>db dumps</option>
+        </arg>
+      </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Use this tool to restore a database.</para>
+      <para>Shuts down the specified dhis2 instance and takes a snapshot backup of the current database. It then drops the current
+      database and creates a new blank one. The new database is then populated with the specified db dump.</para>
+    </refsect1>
+    <refsect1>
+      <title>Examples</title>
+      <para><command>dhis2-restoredb myInstance db.sql</command></para>
+      <para>Restores the db.sql dump to the myInstance database</para>
+    </refsect1>
+  </refentry>
+
+  <!-- ============================================================================== -->
+
+  <refentry>
+
+      <refmeta>
+      <refentrytitle>dhis2-backup</refentrytitle>
+      <manvolnum>1</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>dhis2-backup</refname>
+      <refpurpose>Create a backup of a dhis2 database</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <cmdsynopsis>
+        <command>/usr/bin/dhis2-backup</command>
+      </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Use this tool to create a backup of a database.</para>
+      <para></para>
+    </refsect1>
+    <refsect1>
+      <title>Examples</title>
+      <para><command>dhis2-backup</command></para>
+      <para>Creates a backup in the ~/backup folder</para>
+    </refsect1>
+  </refentry>
+
+  <!-- ============================================================================== -->
+
   <section>
     <title>Troubleshooting guide</title>
     <para>The following table shows some common problems which occur and likely remedies:</para>
@@ -585,5 +722,5 @@
       </table>
     </para>
   </section>
-    
+
 </chapter>
