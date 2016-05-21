@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   DHIS2 installation helper script
@@ -24,22 +24,15 @@ fi
 
 # Only tested on LTS Ubuntu versions
 case $RELEASE in
-
-  12.04)
-    echo "installing on 12.04"
-    echo "setup repositories for postgresql and nginx";
-    # new way to install postgres 9.2 (https://wiki.postgresql.org/wiki/Apt)
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" >/etc/apt/sources.list.d/pgdg.list
-    wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-    # need to use a ppa for nginx
-    apt-get -y install python-software-properties -y
-    add-apt-repository ppa:nginx/stable -y;; 
-
   14.04)
     echo "installing on 14.04";;
 
+  16.04)
+    echo "installing on 16.04";;
+
   *)
-    echo "Only Ubuntu LTS releases (12.04 and 14.04) are supported";
+    echo "The PPA only contains packages for Ubuntu LTS 14.04 and 16.04";
+    echo "You can build for other versions if you want, the source code is located at https://github.com/dhis2/dhis2-tools";
     echo "Exiting ...";
     exit 1;;
 esac
@@ -59,7 +52,7 @@ apt-get -y install dhis2-tools
 
 
 # Uncomment below to install postgres and nginx servers on this machine
-# apt-get -y install nginx postgresql 
+# apt-get -y install nginx postgresql
 echo "The dhis2-tools are now installed. You may also want to"
 echo "install nginx and postgresql servers on this machine. You"
 echo "can do so by running:"
