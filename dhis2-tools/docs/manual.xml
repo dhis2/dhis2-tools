@@ -231,7 +231,7 @@
             <listitem>
               <para>DO NOT create the database when creating the instance. Note if you use this
                 option you will have to manually edit the properties file at
-                /var/lib/dhis2/&lt;instance&gt;/hibernate.properties.</para>
+                /var/lib/dhis2/&lt;instance&gt;/dhis.conf.</para>
             </listitem>
           </varlistentry>
         </variablelist>
