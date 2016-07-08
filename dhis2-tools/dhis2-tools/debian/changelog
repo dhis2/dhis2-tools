@@ -1,3 +1,9 @@
+dhis2-tools (1.2-1ubuntu4) trusty; urgency=low
+
+  * dhis2-instance-create generates dhis.conf file instead of hibernate.properites
+
+ -- Simon Jespersen <simjes91@me.com>  Fri, 08 Jul 2016 17:06:10 +0200
+
 dhis2-tools (1.2-1ubuntu3) xenial; urgency=low
 
   * Tested with Ubuntu 16.04
