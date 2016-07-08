@@ -1,8 +1,8 @@
 #!/bin/bash
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   Script to deploy a dhis2 instance
@@ -70,7 +70,7 @@ checkport() {
 }
 ###############################################################
 
-# main entry point 
+# main entry point
 echo checking options
 while getopts p:nh opt
 do
@@ -132,16 +132,16 @@ if $CREATEDB; then
   sudo -u postgres psql -c  "GRANT ALL ON DATABASE $DBNAME TO $TARGET;"
 fi
 
-sudo -u $TARGET sh -c "cat > $DHIS2HOME/hibernate.properties" << EOT
-hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
-hibernate.connection.driver_class = org.postgresql.Driver
-hibernate.connection.url = jdbc:postgresql://localhost:5432/$DBNAME
-hibernate.connection.username = $TARGET
-hibernate.connection.password = $PASSWORD
-hibernate.hbm2ddl.auto = update
+sudo -u $TARGET sh -c "cat > $DHIS2HOME/dhis.conf" << EOT
+connection.dialect = org.hibernate.dialect.PostgreSQLDialect
+connection.driver_class = org.postgresql.Driver
+connection.url = jdbc:postgresql://localhost:5432/$DBNAME
+connection.username = $TARGET
+connection.password = $PASSWORD
+connection.schema = update
 EOT
 
-sudo -u $TARGET chmod 0600  $DHIS2HOME/hibernate.properties
+sudo -u $TARGET chmod 0600  $DHIS2HOME/dhis.conf
 sudo -u $TARGET sed -i s/HTTPPORT/$HTTPPORT/ $DHIS2HOME/conf/server.xml
 
 sudo -u $TARGET sh -c "cat > $DHIS2HOME/logrotate.conf" << EOT

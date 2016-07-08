@@ -3,3 +3,8 @@
 *.changes
 *.debian.tar.gz
 *.1.gz
+*.deb
+dhis2-tools/dhis2-tools/debian/dhis2-tools
+dhis2-tools/dhis2-tools/debian/dhis2-tools.debhelper.log
+dhis2-tools/dhis2-tools/debian/dhis2-tools.substvars
+dhis2-tools/dhis2-tools/debian/files
