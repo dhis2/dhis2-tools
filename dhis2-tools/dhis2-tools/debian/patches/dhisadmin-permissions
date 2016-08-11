@@ -1,0 +1,33 @@
+Description: dhis2admin permission fix
+ dhis2admins can now create, startup and shutdown instances without sudo.
+ .
+ dhis2-tools (1.2-1ubuntu4) trusty; urgency=low
+ .
+   * dhis2-instance-create generates dhis.conf file instead of hibernate.properites
+Author: Simon Jespersen <simjes91@me.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- dhis2-tools-1.2.orig/etc/sudoers.d/dhis2
++++ dhis2-tools-1.2/etc/sudoers.d/dhis2
+@@ -5,6 +5,7 @@ Cmnd_Alias DHIS2PROGS = /usr/bin/dhis2-*
+ Runas_Alias DHIS2USERS = %dhis2
+ 
+ # Dhis2 admins can run dhis2-instance-create as root
++%dhis2admin ALL=(postgres)NOPASSWD:/usr/bin/psql
+ %dhis2admin ALL=(root)NOPASSWD:DHIS2CREATE,/usr/sbin/useradd
+-# Dhis2 admins can run all dhis2 progs as the dhis2 instance user 
+-%dhis2admin ALL=(DHIS2USERS) ALL
++# Dhis2 admins can run all dhis2 progs as the dhis2 instance user
++%dhis2admin ALL=(DHIS2USERS)NOPASSWD:ALL
