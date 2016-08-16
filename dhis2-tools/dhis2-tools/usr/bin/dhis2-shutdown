@@ -1,8 +1,8 @@
 #!/bin/sh
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   DHIS2 instance startup script
@@ -14,6 +14,13 @@ fi
 
 INSTANCE=$1
 PID_FILE=/var/lib/dhis2/$INSTANCE/tomcat.pid
+
+if [ ! -f ${PID_FILE} ]; then
+  echo "Instance is not running"
+  exit 0
+fi
+
 PID=$(cat $PID_FILE)
+
 echo "Shutting down dhis2 instance"
-sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE 
+sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE
