@@ -1,0 +1,145 @@
+Description: Delete instance script
+ Added script to delete instances. Fixed permissions. dhis2-delete-instance
+ .
+ dhis2-tools (1.3-1ubuntu1) trusty; urgency=low
+ .
+   * dhis2-delete-instance added
+Author: Simon Jespersen <simjes91@me.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- dhis2-tools-1.3.orig/etc/sudoers.d/dhis2
++++ dhis2-tools-1.3/etc/sudoers.d/dhis2
+@@ -9,3 +9,7 @@ Runas_Alias DHIS2USERS = %dhis2
+ %dhis2admin ALL=(root)NOPASSWD:DHIS2CREATE,/usr/sbin/useradd
+ # Dhis2 admins can run all dhis2 progs as the dhis2 instance user
+ %dhis2admin ALL=(DHIS2USERS)NOPASSWD:ALL
++# Dhis2 admins can delete an instance
++%dhis2admin ALL=(root)NOPASSWD:/usr/sbin/userdel
++# Dhis2 admins can shutdown an instance
++%dhis2admin ALL=(root)NOPASSWD:/bin/kill
+--- /dev/null
++++ dhis2-tools-1.3/usr/bin/dhis2-delete-instance
+@@ -0,0 +1,83 @@
++#!/bin/bash
++
++set -e
++#dhis2-delete-instance -d <db name> <instance name>
++
++###############
++if [[ "$(groups $USER)" =~ dhis2admin ]]
++then
++  echo "Good. User is in dhis2admin group"
++else
++  echo "$USER is not in dhis2admin group.  You must be in the dhis2admin group delete an instance"
++  exit 1
++fi
++###############
++
++#Variables and default values
++DHIS2BASEDIR=/var/lib/dhis2
++PROG=`basename $0`
++
++###############
++usage() {
++  echo "Usage: $PROG [options] <instance>"
++  echo "  instance: name of the dhis2 instance to delete"
++  echo "Options:"
++  echo "  -h	           Display this help message"
++  echo "  -d  dbname       Name of the database"
++}
++###############
++
++# main entry point
++echo checking options
++while getopts p:nh opt
++do
++  case $opt in
++    d) DBNAME=$OPTARG ;;
++    h) usage;;
++    *) echo "Error: Unknown parameter '$OPTARG'."
++        exit 1;;
++  esac
++done
++
++shift "$((OPTIND-1))"
++
++if [ "$#" -lt 1 ]; then
++  usage
++  exit 1
++fi
++if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
++  usage
++  exit 0
++fi
++
++TARGET=$1
++DHIS2HOME=$DHIS2BASEDIR/$TARGET
++
++if [ -z "${TARGET}" ]; then
++  echo "Error: No Dhis2 instance name specified"
++  exit 2
++fi
++
++if [ -z "${DBNAME}" ]; then
++  DBNAME=${TARGET}
++fi
++ 
++deleteInstance() {
++  dhis2-shutdown ${TARGET}
++  sleep 3
++  sudo userdel -r ${TARGET} 
++  dropdb ${DBNAME}
++  dropuser ${TARGET}
++  echo "The instance has been deleted"
++}
++
++
++echo "You are about to delete instance '${TARGET}' and database '${DBNAME}'"
++read -p "Are you sure you want to delete? This can not be undone. y/n: " yn
++    case $yn in
++        [Yy]* ) deleteInstance;;
++        * ) exit 0;;
++    esac
++
++
++
+--- dhis2-tools-1.3.orig/usr/bin/dhis2-shutdown
++++ dhis2-tools-1.3/usr/bin/dhis2-shutdown
+@@ -1,8 +1,8 @@
+ #!/bin/sh
+-#       ____  __  ______________ 
++#       ____  __  ______________
+ #      / __ \/ / / /  _/ ___/__ \
+ #     / / / / /_/ // / \__ \__/ /
+-#    / /_/ / __  // / ___/ / __/ 
++#    / /_/ / __  // / ___/ / __/
+ #   /_____/_/ /_/___//____/____/
+ #
+ #   DHIS2 instance startup script
+@@ -14,6 +14,13 @@ fi
+ 
+ INSTANCE=$1
+ PID_FILE=/var/lib/dhis2/$INSTANCE/tomcat.pid
++
++if [ ! -f ${PID_FILE} ]; then
++  echo "Instance is not running"
++  exit 0
++fi
++
+ PID=$(cat $PID_FILE)
++
+ echo "Shutting down dhis2 instance"
+-sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE 
++sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE
