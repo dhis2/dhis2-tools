@@ -1,1 +1,4 @@
 cleanup
+dhis.conf
+dhisadmin-permissions
+delete-instance-script

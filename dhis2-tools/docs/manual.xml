@@ -170,7 +170,7 @@
     <!-- ============================================================================== -->
     <refentry>
 
-        <refmeta>
+      <refmeta>
         <refentrytitle>dhis2-instance-create</refentrytitle>
         <manvolnum>1</manvolnum>
       </refmeta>
@@ -231,7 +231,7 @@
             <listitem>
               <para>DO NOT create the database when creating the instance. Note if you use this
                 option you will have to manually edit the properties file at
-                /var/lib/dhis2/&lt;instance&gt;/hibernate.properties.</para>
+                /var/lib/dhis2/&lt;instance&gt;/dhis.conf.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -647,6 +647,52 @@
       <title>Examples</title>
       <para><command>dhis2-backup</command></para>
       <para>Creates a backup in the ~/backup folder</para>
+    </refsect1>
+  </refentry>
+
+  <!-- ============================================================================== -->
+  <refentry>
+
+    <refmeta>
+      <refentrytitle>dhis2-delete-instance</refentrytitle>
+      <manvolnum>1</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>dhis2-delete-instance</refname>
+      <refpurpose>Deletes the specified DHIS2 instance and its database.</refpurpose>
+    </refnamediv>
+
+    <refsynopsisdiv>
+      <cmdsynopsis>
+        <command>/usr/bin/dhis2-delete-instance</command>
+        <arg choice="opt">
+          <option>OPTIONS</option>
+        </arg>
+        <arg choice="plain">name</arg>
+      </cmdsynopsis>
+    </refsynopsisdiv>
+
+    <refsect1>
+      <title>Description</title>
+      <para>Use this tool to delete a DHIS2 instance.
+        This will delete the user along with its home directory. It also deletes the database user and the database.
+      </para>
+    </refsect1>
+    <refsect1>
+      <title>OPTIONS</title>
+      <variablelist>
+        <varlistentry>
+          <term>-d</term>
+          <listitem>
+            <para>database name</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </refsect1>
+    <refsect1>
+      <title>Examples</title>
+      <para><command>dhis2-delete-instance -d dhisdb dhis</command></para>
+      <para>Deletes a dhis2 instance named 'dhis' and its database named 'dhisdb'</para>
     </refsect1>
   </refentry>
 
