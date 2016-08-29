@@ -107,17 +107,17 @@
   <section>
     <title>Installation</title>
     <para> This manual assumes that you have installed a minimal distribution of ubuntu server 12.04
-      LTS or 14.04 LTS. By minimal we mean that only the base operating system is installed together
+      LTS, 14.04 LTS or 16.04 LTS. By minimal we mean that only the base operating system is installed together
       with an openssh server. During the installation you should avoid to install ANY other packages
       The dhis2-tools package will ensure that the required packages are installed as dependencies.</para>
     <para>
       It is recommended as a general guideline that before proceeding any further you should strengthen the
       security of the system at this point by improving the security of your ssh service and installing a host based
-      firewall like ufw.  This process is described eleswhere(?).
+      firewall like ufw.
     </para>
     <para>
       Once your base system is properly installed and secured you can proceed to install the
-      dhis2-tools package from the apt repository at http://apt.dhis2.org. The easiest way to do so is to
+      dhis2-tools package from the PPA repository at https://launchpad.net/~simjes91/+archive/ubuntu/dhis2-tools. The easiest way to do so is to
       run the install.sh script available (with the source code of the package) at
       https://github.com/dhis2/dhis2tools.
     </para>
