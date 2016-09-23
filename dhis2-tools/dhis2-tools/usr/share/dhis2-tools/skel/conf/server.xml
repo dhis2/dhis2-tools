@@ -20,6 +20,12 @@
       <Host name="localhost"  appBase="webapps" 
             unpackWARs="true" autoDeploy="false"
             xmlValidation="false" xmlNamespaceAware="false">
+        <!-- Mark HTTP as HTTPS forward from SSL termination at nginx proxy -->
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
+            remoteIpHeader="x-forwarded-for"
+            remoteIpProxiesHeader="x-forwarded-by"
+            protocolHeader="x-forwarded-proto"
+        />
       </Host>
     </Engine>
   </Service>
