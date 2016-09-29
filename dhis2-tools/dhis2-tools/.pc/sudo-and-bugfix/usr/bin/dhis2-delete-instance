@@ -1,0 +1,83 @@
+#!/bin/bash
+
+set -e
+#dhis2-delete-instance -d <db name> <instance name>
+
+###############
+if [[ "$(groups $USER)" =~ dhis2admin ]]
+then
+  echo "Good. User is in dhis2admin group"
+else
+  echo "$USER is not in dhis2admin group.  You must be in the dhis2admin group delete an instance"
+  exit 1
+fi
+###############
+
+#Variables and default values
+DHIS2BASEDIR=/var/lib/dhis2
+PROG=`basename $0`
+
+###############
+usage() {
+  echo "Usage: $PROG [options] <instance>"
+  echo "  instance: name of the dhis2 instance to delete"
+  echo "Options:"
+  echo "  -h	           Display this help message"
+  echo "  -d  dbname       Name of the database"
+}
+###############
+
+# main entry point
+echo checking options
+while getopts p:nh opt
+do
+  case $opt in
+    d) DBNAME=$OPTARG ;;
+    h) usage;;
+    *) echo "Error: Unknown parameter '$OPTARG'."
+        exit 1;;
+  esac
+done
+
+shift "$((OPTIND-1))"
+
+if [ "$#" -lt 1 ]; then
+  usage
+  exit 1
+fi
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+  usage
+  exit 0
+fi
+
+TARGET=$1
+DHIS2HOME=$DHIS2BASEDIR/$TARGET
+
+if [ -z "${TARGET}" ]; then
+  echo "Error: No Dhis2 instance name specified"
+  exit 2
+fi
+
+if [ -z "${DBNAME}" ]; then
+  DBNAME=${TARGET}
+fi
+ 
+deleteInstance() {
+  dhis2-shutdown ${TARGET}
+  sleep 3
+  sudo userdel -r ${TARGET} 
+  dropdb ${DBNAME}
+  dropuser ${TARGET}
+  echo "The instance has been deleted"
+}
+
+
+echo "You are about to delete instance '${TARGET}' and database '${DBNAME}'"
+read -p "Are you sure you want to delete? This can not be undone. y/n: " yn
+    case $yn in
+        [Yy]* ) deleteInstance;;
+        * ) exit 0;;
+    esac
+
+
+
