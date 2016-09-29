@@ -29,7 +29,7 @@ usage() {
 
 # main entry point
 echo checking options
-while getopts p:nh opt
+while getopts d:h opt
 do
   case $opt in
     d) DBNAME=$OPTARG ;;
@@ -61,11 +61,11 @@ fi
 if [ -z "${DBNAME}" ]; then
   DBNAME=${TARGET}
 fi
- 
+
 deleteInstance() {
   dhis2-shutdown ${TARGET}
   sleep 3
-  sudo userdel -r ${TARGET} 
+  sudo userdel -r ${TARGET}
   dropdb ${DBNAME}
   dropuser ${TARGET}
   echo "The instance has been deleted"
@@ -78,6 +78,3 @@ read -p "Are you sure you want to delete? This can not be undone. y/n: " yn
         [Yy]* ) deleteInstance;;
         * ) exit 0;;
     esac
-
-
-

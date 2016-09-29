@@ -114,24 +114,29 @@ echo "You are about to create a Dhis2 instance called '$TARGET'"
 id -u $TARGET >/dev/null 2>&1 && { echo "User $TARGET already exists"; exit 1; }
 checkport HTTP "$HTTPPORT"
 if $CREATEDB; then
-  sudo -u postgres psql $DBNAME -c '\q' >/dev/null 2>&1 && { echo "Database $DBNAME exists"; exit 1; }
+  psql $DBNAME -c '\q' >/dev/null 2>&1 && { echo "Database $DBNAME exists"; exit 1; }
 fi
 ###############################################################
 
 #  Right, we should be good to go ...
 
 # create the system user
+echo "Creating system user"
 sudo useradd -m -s /bin/bash -b $DHIS2BASEDIR -c "$TARGET dhis2 instance" -g dhis2 -k $DHIS2SKEL $TARGET
-# create the database user with a strong password
+# create the database user with a strong password. If this hangs: https://goo.gl/gUD3ga
+echo "Generating password"
 PASSWORD=$(makepasswd --chars=10)
-sudo -u postgres psql -c "CREATE ROLE $TARGET PASSWORD '$PASSWORD' NOSUPERUSER CREATEDB NOCREATEROLE INHERIT LOGIN;"
+echo "Creating database role"
+psql postgres -c "CREATE ROLE $TARGET PASSWORD '$PASSWORD' NOSUPERUSER CREATEDB NOCREATEROLE INHERIT LOGIN;"
 
 if $CREATEDB; then
   # Create the database
-  sudo -u postgres psql -c  "CREATE DATABASE $DBNAME OWNER $TARGET ENCODING 'UTF-8' TEMPLATE template0;"
-  sudo -u postgres psql -c  "GRANT ALL ON DATABASE $DBNAME TO $TARGET;"
+  echo "Creating database"
+  psql postgres -c  "CREATE DATABASE $DBNAME OWNER $TARGET ENCODING 'UTF-8' TEMPLATE template0;"
+  psql postgres -c  "GRANT ALL ON DATABASE $DBNAME TO $TARGET;"
 fi
 
+echo "Creating dhis.conf"
 sudo -u $TARGET sh -c "cat > $DHIS2HOME/dhis.conf" << EOT
 connection.dialect = org.hibernate.dialect.PostgreSQLDialect
 connection.driver_class = org.postgresql.Driver
