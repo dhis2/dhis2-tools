@@ -2,3 +2,4 @@ cleanup
 dhis.conf
 dhisadmin-permissions
 delete-instance-script
+sudo-and-bugfix

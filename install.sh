@@ -32,7 +32,7 @@ case $RELEASE in
     wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
     # need to use a ppa for nginx
     apt-get -y install python-software-properties -y
-    add-apt-repository ppa:nginx/stable -y;; 
+    add-apt-repository ppa:nginx/stable -y;;
 
   14.04)
     echo "installing on 14.04";;
@@ -68,5 +68,7 @@ echo "install nginx and postgresql servers on this machine. You"
 echo "can do so by running:"
 echo
 echo "apt-get install nginx postgresql"
+echo
+echo "You should check out the DHIS2 documentation for Postgres performance tuning and more configuration help: https://goo.gl/8GGtIB"
 echo
 echo "Type 'apropos dhis2' to see available manual pages."

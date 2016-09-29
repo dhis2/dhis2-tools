@@ -19,3 +19,4 @@ usr/share/man/man1/dhis2-backup.1.gz
 usr/share/man/man1/dhis2-integrity.1.gz
 usr/share/man/man1/dhis2-nginx.1.gz
 usr/share/man/man1/dhis2-restoredb.1.gz
+usr/share/man/man1/dhis2-delete-instance.1.gz

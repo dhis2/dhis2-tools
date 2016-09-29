@@ -1,14 +1,15 @@
 #!/bin/bash
-#       ____  __  ______________ 
+#       ____  __  ______________
 #      / __ \/ / / /  _/ ___/__ \
 #     / / / / /_/ // / \__ \__/ /
-#    / /_/ / __  // / ___/ / __/ 
+#    / /_/ / __  // / ___/ / __/
 #   /_____/_/ /_/___//____/____/
 #
 #   DHIS2 instance startup script
 
-if [ "$#" -lt 1 ]; then 
-  echo "No conf file specifiied - using default" 
+if [ "$#" -lt 1 ]; then
+  echo "No conf file specified - using default"
+  echo "This is only meant to help you start configuring Nginx, it is not a complete config"
   CONFFILE=/usr/share/dhis2-tools/samples/nginx/dhis2
 else
   CONFFILE=$1
@@ -18,8 +19,9 @@ BASE=$(basename $CONFFILE)
 
 # nginx setup
 echo "setting up nginx with $CONFFILE"
-[[ -e /etc/nginx/sites-available/$BASE ]] && { echo "/etc/nginx/sites-available/$BASE already exists"; exit 1; } 
+[[ -e /etc/nginx/sites-available/$BASE ]] && { echo "/etc/nginx/sites-available/$BASE already exists"; exit 1; }
 cp $CONFFILE /etc/nginx/sites-available
-unlink /etc/nginx/sites-enabled/* || { echo "no nginx sites configured"; } 
-ln -s /etc/nginx/sites-available/$BASE /etc/nginx/sites-enabled/$BASE                
+unlink /etc/nginx/sites-enabled/* || { echo "no nginx sites configured"; }
+ln -s /etc/nginx/sites-available/$BASE /etc/nginx/sites-enabled/$BASE
 /etc/init.d/nginx restart
+echo "You should look into securing your server with SSL, some help can be found here: https://goo.gl/Fr7Ib6"
