@@ -1,5 +1,5 @@
-dhis2-tools (1.4) trusty; urgency=low
+dhis2-tools (1.4-xenia) xenial; urgency=low
 
-  * Initial release
+  * Upstream changes 
 
  -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 08 Mar 2017 18:52:29 +0200
