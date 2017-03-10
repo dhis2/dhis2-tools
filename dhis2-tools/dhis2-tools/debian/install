@@ -1,7 +1,0 @@
-/etc/sudoers.d/dhis2 /etc/sudoers.d/
-/var/lib/dhis2 /var/lib/
-/var/log/dhis2 /var/log/
-/usr/share/dhis2-tools /usr/share/
-/usr/share/doc/dhis2-tools /usr/share/doc/
-/usr/share/man/man1/* /usr/share/man/man1/
-/usr/bin/* /usr/bin/
