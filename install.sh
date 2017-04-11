@@ -41,7 +41,7 @@ esac
 
 #add PPA
 apt-get install software-properties-common
-add-apt-repository -y ppa:simjes91/dhis2-tools
+add-apt-repository -y ppa:bobjolliffe/dhis2-tools
 add-apt-repository -y ppa:webupd8team/java
 apt-get -y update
 
