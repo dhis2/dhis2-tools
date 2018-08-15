@@ -19,9 +19,9 @@ USER=$LOGNAME
 
 if [ "$USER" == "$INSTANCE" ]
   then
-    /usr/share/tomcat7/bin/startup.sh
+    /usr/share/tomcat8/bin/startup.sh
   else
-    sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat7/bin/startup.sh
+    sudo -u $INSTANCE CATALINA_BASE=/var/lib/dhis2/$INSTANCE /usr/share/tomcat8/bin/startup.sh
 fi
 
 echo "DHIS2 instance starting for $INSTANCE"
