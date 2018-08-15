@@ -125,9 +125,9 @@ echo "Creating system user"
 sudo useradd -m -s /bin/bash -b $DHIS2BASEDIR -c "$TARGET dhis2 instance" -g dhis2 -k $DHIS2SKEL $TARGET
 
 if $CREATEDB; then
-  # create the database user with a strong password. If this hangs: https://goo.gl/gUD3ga
+  # create the database user with a strong password
   echo "Generating password"
-  PASSWORD=$(makepasswd --chars=10)
+  PASSWORD=$(openssl rand -base64 12)
   echo "Creating database role"
   psql postgres -c "CREATE ROLE $TARGET PASSWORD '$PASSWORD' NOSUPERUSER CREATEDB NOCREATEROLE INHERIT LOGIN;"
   # Create the database

@@ -1,6 +1,5 @@
 /pkg/etc/sudoers.d/dhis2 /etc/sudoers.d/
 /pkg/var/lib/dhis2 /var/lib/
-/pkg/var/log/dhis2 /var/log/
 /pkg/usr/share/dhis2-tools /usr/share/
 /pkg/usr/share/doc/dhis2-tools /usr/share/doc/
 /pkg/usr/share/man/man1/* /usr/share/man/man1/

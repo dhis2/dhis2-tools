@@ -1,5 +1,5 @@
-dhis2-tools (1.4-xenia) xenial; urgency=low
+dhis2-tools (1.5-bionic) bionic; urgency=low
 
-  * Upstream changes 
+  * Created new package for bionic
 
- -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 08 Mar 2017 18:52:29 +0200
+ -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 06:29:07 +0100
