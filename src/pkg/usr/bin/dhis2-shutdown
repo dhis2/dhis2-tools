@@ -20,7 +20,7 @@ if [ ! -f ${PID_FILE} ]; then
   exit 0
 fi
 
-PID=$(cat $PID_FILE)
+PID=$(sudo cat $PID_FILE)
 
 echo "Shutting down dhis2 instance"
 sudo -u $INSTANCE kill $PID && sudo -u $INSTANCE rm $PID_FILE
