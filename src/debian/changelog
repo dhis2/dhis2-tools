@@ -1,18 +1,13 @@
-dhis2-tools (1.5.1-bionicubuntu1) UNRELEASED; urgency=medium
+dhis2-tools (1.5.1-bionicubuntu1) bionic; urgency=medium
 
   *  More tomcat 8 fixes
   *  Updated apache2 and nginx conf samples 
+  *  Fix to cater for tomcat 8 
 
- -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 17:23:26 +0100
-
-dhis2-tools (1.5.1-bionic) bionic; urgency=medium
-
-  * Fix to cater for tomcat 8 
-
- -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 11:43:14 +0100
+ -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 17:59:36 +0100
 
 dhis2-tools (1.5-bionic) bionic; urgency=low
 
   * Created new package for bionic
 
- -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 06:29:07 +0100
+ -- Bob Jolliffe <bobjolliffe@gmail.com>  Wed, 15 Aug 2018 17:57:50 +0100
