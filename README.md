@@ -5,6 +5,7 @@ DHIS2 tools readme.
 The package can be installed by running the provided install script or by:
 
 ```bash
+$ sudo apt-get install software-properties-common
 $ sudo add-apt-repository ppa:bobjolliffe/dhis2-tools
 $ sudo apt-get update
 $ sudo apt-get install dhis2-tools
