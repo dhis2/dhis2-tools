@@ -45,7 +45,8 @@ $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```  
 
 The certificate will be located under `/etc/letsencrypt/live/<domain>/`.  
-The Nginx configuration should be the same for both 14.04 and 16.04: 
+Use the following configuration for your Dhis2 Nginx setup (located at `/etc/nginx/sites-available/dhis2`).  
+It should be the same for both 14.04 and 16.04: 
 
 ```
 # apply these settings to all backends
