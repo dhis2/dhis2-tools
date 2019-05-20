@@ -13,12 +13,12 @@
                     
     <Connector port="HTTPPORT" address="127.0.0.1" protocol="HTTP/1.1" proxyPort="443" scheme="https"  
         URIEncoding="UTF-8"
-        executor="tomcatThreadPool" connectionTimeout="20000" />
+        executor="tomcatThreadPool" connectionTimeout="20000" relaxedQueryChars="[,]"/>
  
     <Engine name="Catalina" defaultHost="localhost">
       <Host name="localhost"  appBase="webapps" 
             unpackWARs="true" autoDeploy="false"
-            xmlValidation="false" xmlNamespaceAware="false" relaxedQueryChars="[,]">
+            xmlValidation="false" xmlNamespaceAware="false" >
         <!-- Mark HTTP as HTTPS forward from SSL termination at nginx proxy -->
         <Valve className="org.apache.catalina.valves.RemoteIpValve"
             remoteIpHeader="x-forwarded-for"
