@@ -1,3 +1,5 @@
+# THIS IS OBSOLETE
+
 # SSL setup with Let's encrypt for Ubuntu, Nginx  
 
 This guide demonstrates how to set up ssl and auto renew with Let's encrypt on a server running Ubuntu 16.04 or 14.04 LTS, DHIS2 and Nginx.  

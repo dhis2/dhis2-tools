@@ -1,4 +1,4 @@
-![DHIS2 logo](./dhis2_logo.png)
+![DHIS2 logo](../dhis2_logo.png)
 
 DHIS2 tools readme.
 
